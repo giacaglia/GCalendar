@@ -38,8 +38,6 @@
 @interface FSCalendar ()<UICollectionViewDataSource, UICollectionViewDelegate>
 {
     FSCalendarAppearance *_appearance;
-    NSDate *startDate;
-    NSDate *endDate;
     NSDate *_minimumDate;
     NSDate *_maximumDate;
 }
@@ -150,7 +148,7 @@
     contentView.layer.mask = maskLayer;
     self.maskLayer = maskLayer;
     
-    startDate = [NSDate date];
+    self.startDate = [NSDate date];
     UIView *daysContainer = [[UIView alloc] initWithFrame:CGRectZero];
     daysContainer.backgroundColor = [UIColor clearColor];
     [contentView addSubview:daysContainer];
@@ -412,14 +410,14 @@
     cell.image = [self imageForDate:cell.date];
     cell.subtitle  = [self subtitleForDate:cell.date];
     cell.hasEvent = [self hasEventForDate:cell.date];
-    if (startDate && endDate) {
-        cell.dateIsSelected = ([cell.date compare:startDate] != NSOrderedAscending) &&  ([cell.date compare:endDate] != NSOrderedDescending);
+    if (self.startDate && self.endDate) {
+        cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
     }
-    else if (startDate) {
-        cell.dateIsSelected = ([cell.date compare:startDate] == NSOrderedSame);
+    else if (self.startDate) {
+        cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
     }
-    else if (endDate) {
-        cell.dateIsSelected = ([cell.date compare:endDate] == NSOrderedSame);
+    else if (self.endDate) {
+        cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
     }
     cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
     switch (_scope) {
@@ -478,16 +476,16 @@
             cell.dateIsDeparture = false;
             cell.dateIsArrival = false;
 
-            if (startDate && endDate) {
-                cell.dateIsSelected = ([cell.date compare:startDate] != NSOrderedAscending) &&  ([cell.date compare:endDate] != NSOrderedDescending);
+            if (self.startDate && self.endDate) {
+                cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
             }
-            else if (startDate) {
-                cell.dateIsSelected = ([cell.date compare:startDate] == NSOrderedSame);
-                cell.dateIsArrival = [startDate isEqualToDate:cell.date];
+            else if (self.startDate) {
+                cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
+                cell.dateIsArrival = [self.startDate isEqualToDate:cell.date];
             }
-            else if (endDate) {
-                cell.dateIsSelected = ([cell.date compare:endDate] == NSOrderedSame);
-                cell.dateIsDeparture = [endDate isEqualToDate:cell.date];
+            else if (self.endDate) {
+                cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
+                cell.dateIsDeparture = [self.endDate isEqualToDate:cell.date];
             }
             
             cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
@@ -842,7 +840,7 @@
 
 - (NSDate *)selectedDate
 {
-    return endDate;
+    return self.endDate;
 }
 
 
@@ -1282,8 +1280,8 @@
 
 - (BOOL)isDateSelected:(NSDate *)date
 {
-    if (startDate && endDate) {
-        BOOL isSelected =([date compare:startDate] != NSOrderedAscending) &&  ([date compare:endDate] != NSOrderedDescending);
+    if (self.startDate && self.endDate) {
+        BOOL isSelected =([date compare:self.startDate] != NSOrderedAscending) &&  ([date compare:self.endDate] != NSOrderedDescending);
         return isSelected || [_collectionView.indexPathsForSelectedItems containsObject:[self indexPathForDate:date]];
     }
     return false;
@@ -1378,12 +1376,12 @@
 - (void)enqueueSelectedDate:(NSDate *)date
 {
     if (self.isEditingStartDate) {
-        startDate = date;
+        self.startDate = date;
     }
     else {
-        endDate = date;
+        self.endDate = date;
     }
-    NSLog(@"start date: %@, end date: %@", startDate, endDate);
+    NSLog(@"start date: %@, end date: %@", self.startDate, self.endDate);
 }
 
 

@@ -94,6 +94,10 @@ IB_DESIGNABLE
 @property (readonly, nonatomic) NSDate *selectedDate;
 @property (assign, nonatomic) BOOL isEditingStartDate;
 
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+
+
 
 - (void)reloadData;
 - (CGSize)sizeThatFits:(CGSize)size;
