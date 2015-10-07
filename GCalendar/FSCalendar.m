@@ -1433,6 +1433,27 @@
 
 #pragma mark - DataSource
 
+- (NSDate *)startDateForCalendar {
+    if (_dataSource && [_dataSource respondsToSelector:@selector(startDateForCalendar:)]) {
+        _startDate = [_dataSource startDateForCalendar:self].fs_dateByIgnoringTimeComponents;
+    }
+    if (!_startDate) {
+        _startDate = [NSDate fs_dateWithYear:1970 month:1 day:1];
+    }
+    return _startDate;
+}
+
+- (NSDate *)endDateForCalendar {
+    if (_dataSource && [_dataSource respondsToSelector:@selector(startDateForCalendar:)]) {
+        _endDate = [_dataSource endDateForCalendar:self].fs_dateByIgnoringTimeComponents;
+    }
+    if (!_endDate) {
+        _endDate = [NSDate fs_dateWithYear:1970 month:1 day:1];
+    }
+    return _endDate;
+}
+
+
 - (NSString *)subtitleForDate:(NSDate *)date
 {
     if (_dataSource && [_dataSource respondsToSelector:@selector(calendar:subtitleForDate:)]) {

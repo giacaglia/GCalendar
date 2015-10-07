@@ -59,13 +59,14 @@ typedef NS_ENUM(NSInteger, FSCalendarCellState) {
 @end
 
 @protocol FSCalendarDataSource <NSObject>
-
 @optional
 - (NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(NSDate *)date;
 - (UIImage *)calendar:(FSCalendar *)calendar imageForDate:(NSDate *)date;
 - (BOOL)calendar:(FSCalendar *)calendar hasEventForDate:(NSDate *)date;
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar;
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar;
+- (NSDate *)startDateForCalendar:(FSCalendar *)calendar;
+- (NSDate *)endDateForCalendar:(FSCalendar *)calendar;
 
 @end
 
