@@ -148,7 +148,6 @@
     contentView.layer.mask = maskLayer;
     self.maskLayer = maskLayer;
     
-    self.startDate = [NSDate date];
     UIView *daysContainer = [[UIView alloc] initWithFrame:CGRectZero];
     daysContainer.backgroundColor = [UIColor clearColor];
     [contentView addSubview:daysContainer];
@@ -284,9 +283,9 @@
     
     if (_needsReloadingSelectingDates) {
         _needsReloadingSelectingDates = NO;
-//        [self.selectedDates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            [self selectDate:obj scrollToDate:NO];
-//        }];
+        //        [self.selectedDates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        //            [self selectDate:obj scrollToDate:NO];
+        //        }];
     }
     
     if (_needsAdjustingMonthPosition) {
@@ -410,14 +409,14 @@
     cell.image = [self imageForDate:cell.date];
     cell.subtitle  = [self subtitleForDate:cell.date];
     cell.hasEvent = [self hasEventForDate:cell.date];
-    if (self.startDate && self.endDate) {
-        cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
+    if (self.startDateForCalendar && self.endDateForCalendar) {
+        cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([cell.date compare:self.endDateForCalendar] != NSOrderedDescending);
     }
-    else if (self.startDate) {
-        cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
+    else if (self.startDateForCalendar) {
+        cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] == NSOrderedSame);
     }
-    else if (self.endDate) {
-        cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
+    else if (self.endDateForCalendar) {
+        cell.dateIsSelected = ([cell.date compare:self.endDateForCalendar] == NSOrderedSame);
     }
     cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
     switch (_scope) {
@@ -475,17 +474,17 @@
         [collectionView.visibleCells enumerateObjectsUsingBlock:^(FSCalendarCell *cell, NSUInteger idx, BOOL *stop) {
             cell.dateIsDeparture = false;
             cell.dateIsArrival = false;
-
-            if (self.startDate && self.endDate) {
-                cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
+            
+            if (self.startDateForCalendar && self.endDateForCalendar) {
+                cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([cell.date compare:self.endDateForCalendar] != NSOrderedDescending);
             }
-            else if (self.startDate) {
-                cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
-                cell.dateIsArrival = [self.startDate isEqualToDate:cell.date];
+            else if (self.startDateForCalendar) {
+                cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] == NSOrderedSame);
+                cell.dateIsArrival = [self.startDateForCalendar isEqualToDate:cell.date];
             }
-            else if (self.endDate) {
-                cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
-                cell.dateIsDeparture = [self.endDate isEqualToDate:cell.date];
+            else if (self.endDateForCalendar) {
+                cell.dateIsSelected = ([cell.date compare:self.endDateForCalendar] == NSOrderedSame);
+                cell.dateIsDeparture = [self.endDateForCalendar isEqualToDate:cell.date];
             }
             
             cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
@@ -1084,7 +1083,7 @@
             cell.dateIsSelected = NO;
             [cell setNeedsLayout];
             _daysContainer.clipsToBounds = NO;
-//            [_selectedDates removeLastObject];
+            //            [_selectedDates removeLastObject];
             
         }
         [_collectionView selectItemAtIndexPath:targetIndexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
@@ -1280,8 +1279,8 @@
 
 - (BOOL)isDateSelected:(NSDate *)date
 {
-    if (self.startDate && self.endDate) {
-        BOOL isSelected =([date compare:self.startDate] != NSOrderedAscending) &&  ([date compare:self.endDate] != NSOrderedDescending);
+    if (self.startDateForCalendar && self.endDateForCalendar) {
+        BOOL isSelected =([date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([date compare:self.endDateForCalendar] != NSOrderedDescending);
         return isSelected || [_collectionView.indexPathsForSelectedItems containsObject:[self indexPathForDate:date]];
     }
     return false;
@@ -1444,7 +1443,7 @@
 }
 
 - (NSDate *)endDateForCalendar {
-    if (_dataSource && [_dataSource respondsToSelector:@selector(startDateForCalendar:)]) {
+    if (_dataSource && [_dataSource respondsToSelector:@selector(endDateForCalendar:)]) {
         _endDate = [_dataSource endDateForCalendar:self].fs_dateByIgnoringTimeComponents;
     }
     if (!_endDate) {
@@ -1536,7 +1535,3 @@
 }
 
 @end
-
-
-
-
