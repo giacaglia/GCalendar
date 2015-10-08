@@ -160,6 +160,7 @@
     collectionViewLayout.itemSize = CGSizeMake(1, 1);
     collectionViewLayout.sectionInset = UIEdgeInsetsZero;
     
+    
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
                                                           collectionViewLayout:collectionViewLayout];
     collectionView.dataSource = self;
@@ -207,6 +208,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    self.startDate = self.startDateForCalendar;
+    self.endDate = self.endDateForCalendar;
     _supressEvent = YES;
     
     if (_needsAdjustingViewFrame) {
@@ -409,14 +412,17 @@
     cell.image = [self imageForDate:cell.date];
     cell.subtitle  = [self subtitleForDate:cell.date];
     cell.hasEvent = [self hasEventForDate:cell.date];
-    if (self.startDateForCalendar && self.endDateForCalendar) {
-        cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([cell.date compare:self.endDateForCalendar] != NSOrderedDescending);
+    NSLog(@"start: %@, end: %@", self.startDate, self.endDate);
+    if (self.startDate && self.endDate) {
+        cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
+        NSLog(@"date: %@", cell.date);
+        NSLog(cell.dateIsSelected ? @"Yes" : @"No");
     }
-    else if (self.startDateForCalendar) {
-        cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] == NSOrderedSame);
+    else if (self.startDate) {
+        cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
     }
-    else if (self.endDateForCalendar) {
-        cell.dateIsSelected = ([cell.date compare:self.endDateForCalendar] == NSOrderedSame);
+    else if (self.endDate) {
+        cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
     }
     cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
     switch (_scope) {
@@ -475,16 +481,16 @@
             cell.dateIsDeparture = false;
             cell.dateIsArrival = false;
             
-            if (self.startDateForCalendar && self.endDateForCalendar) {
-                cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([cell.date compare:self.endDateForCalendar] != NSOrderedDescending);
+            if (self.startDate && self.endDate) {
+                cell.dateIsSelected = ([cell.date compare:self.startDate] != NSOrderedAscending) &&  ([cell.date compare:self.endDate] != NSOrderedDescending);
             }
-            else if (self.startDateForCalendar) {
-                cell.dateIsSelected = ([cell.date compare:self.startDateForCalendar] == NSOrderedSame);
-                cell.dateIsArrival = [self.startDateForCalendar isEqualToDate:cell.date];
+            else if (self.startDate) {
+                cell.dateIsSelected = ([cell.date compare:self.startDate] == NSOrderedSame);
+                cell.dateIsArrival = [self.startDate isEqualToDate:cell.date];
             }
-            else if (self.endDateForCalendar) {
-                cell.dateIsSelected = ([cell.date compare:self.endDateForCalendar] == NSOrderedSame);
-                cell.dateIsDeparture = [self.endDateForCalendar isEqualToDate:cell.date];
+            else if (self.endDate) {
+                cell.dateIsSelected = ([cell.date compare:self.endDate] == NSOrderedSame);
+                cell.dateIsDeparture = [self.endDate isEqualToDate:cell.date];
             }
             
             cell.dateIsToday = [cell.date fs_isEqualToDateForDay:_today];
@@ -513,18 +519,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *selectedIndexPath = [self indexPathForDate:self.selectedDate];
-    if (!self.allowsMultipleSelection && ![indexPath isEqual:selectedIndexPath]) {
-        [self collectionView:collectionView didDeselectItemAtIndexPath:selectedIndexPath];
-        return;
-    }
-    FSCalendarCell *cell = (FSCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (cell) {
-        _daysContainer.clipsToBounds = NO;
-        cell.dateIsSelected = NO;
-        [cell setNeedsLayout];
-        [self didDeselectDate:cell.date];
-    }
+    //    NSIndexPath *selectedIndexPath = [self indexPathForDate:self.selectedDate];
+    //    if (!self.allowsMultipleSelection && ![indexPath isEqual:selectedIndexPath]) {
+    //        [self collectionView:collectionView didDeselectItemAtIndexPath:selectedIndexPath];
+    //        return;
+    //    }
+    //    FSCalendarCell *cell = (FSCalendarCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    //    if (cell) {
+    //        _daysContainer.clipsToBounds = NO;
+    //        cell.dateIsSelected = NO;
+    //        [cell setNeedsLayout];
+    //        [self didDeselectDate:cell.date];
+    //    }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -1066,11 +1072,6 @@
     if (forPlaceholder) {
         shouldSelect &= [self shouldSelectDate:targetDate];
         if (shouldSelect && ![self isDateSelected:targetDate]) {
-            if (_collectionView.indexPathsForSelectedItems.count && self.selectedDate && !self.allowsMultipleSelection) {
-                NSIndexPath *currentIndexPath = [self indexPathForDate:self.selectedDate];
-                [_collectionView deselectItemAtIndexPath:currentIndexPath animated:YES];
-                [self collectionView:_collectionView didDeselectItemAtIndexPath:currentIndexPath];
-            }
             if ([self collectionView:_collectionView shouldSelectItemAtIndexPath:targetIndexPath]) {
                 [_collectionView selectItemAtIndexPath:targetIndexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
                 [self collectionView:_collectionView didSelectItemAtIndexPath:targetIndexPath];
@@ -1279,8 +1280,8 @@
 
 - (BOOL)isDateSelected:(NSDate *)date
 {
-    if (self.startDateForCalendar && self.endDateForCalendar) {
-        BOOL isSelected =([date compare:self.startDateForCalendar] != NSOrderedAscending) &&  ([date compare:self.endDateForCalendar] != NSOrderedDescending);
+    if (self.startDate && self.endDate) {
+        BOOL isSelected =([date compare:self.startDate] != NSOrderedAscending) &&  ([date compare:self.endDate] != NSOrderedDescending);
         return isSelected || [_collectionView.indexPathsForSelectedItems containsObject:[self indexPathForDate:date]];
     }
     return false;
