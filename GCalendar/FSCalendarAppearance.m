@@ -389,7 +389,21 @@
     // reload appearance
     [_calendar.collectionView.visibleCells makeObjectsPerformSelector:@selector(setNeedsLayout)];
     [_calendar.header.collectionView reloadData];
-    [_calendar.weekdays setValue:[UIFont systemFontOfSize:_weekdayTextSize] forKeyPath:@"font"];
+    [_calendar.weekdays setValue:[self weekdayFontWithSize:_weekdayTextSize] forKeyPath:@"font"];
+}
+
+-(UIFont*)headerFontWithSize:(CGFloat)fontSize{
+    if (self.headerFont!=nil){
+        return [UIFont fontWithName:self.headerFont size:fontSize];
+    }
+    return [UIFont systemFontOfSize:fontSize];
+}
+
+-(UIFont*)weekdayFontWithSize:(CGFloat)fontSize{
+    if (self.weekdayFont!=nil){
+        return [UIFont fontWithName:self.weekdayFont size:fontSize];
+    }
+    return [UIFont systemFontOfSize:fontSize];
 }
 
 @end
