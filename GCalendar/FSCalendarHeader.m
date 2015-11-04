@@ -132,7 +132,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCalendarHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.titleLabel.font = [UIFont systemFontOfSize:_appearance.headerTitleTextSize];
+    cell.titleLabel.font = _appearance.headerFont != nil ? [UIFont fontWithName:_appearance.headerFont size:_appearance.headerTitleTextSize] : [UIFont systemFontOfSize:_appearance.headerTitleTextSize];
     cell.titleLabel.textColor = _appearance.headerTitleColor;
     _dateFormatter.dateFormat = _appearance.headerDateFormat;
     switch (self.calendar.scope) {
@@ -143,11 +143,19 @@
                     cell.titleLabel.text = nil;
                 } else {
                     NSDate *date = [self.calendar.minimumDate fs_dateByAddingMonths:indexPath.item - 1].fs_dateByIgnoringTimeComponents;
-                    cell.titleLabel.text = [_dateFormatter stringFromDate:date];
+                    if ( _appearance.headerUppercase ){
+                        cell.titleLabel.text = [[_dateFormatter stringFromDate:date] uppercaseString];
+                    }else{
+                        cell.titleLabel.text = [_dateFormatter stringFromDate:date];
+                    }
                 }
             } else {
                 NSDate *date = [self.calendar.minimumDate fs_dateByAddingMonths:indexPath.item].fs_dateByIgnoringTimeComponents;
-                cell.titleLabel.text = [_dateFormatter stringFromDate:date];
+                if ( _appearance.headerUppercase ){
+                    cell.titleLabel.text = [[_dateFormatter stringFromDate:date] uppercaseString];
+                }else{
+                    cell.titleLabel.text = [_dateFormatter stringFromDate:date];
+                }
             }
             break;
         }

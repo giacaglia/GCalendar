@@ -126,7 +126,11 @@
 {
     NSArray *weekdaySymbols = self.appearance.useVeryShortWeekdaySymbols ? self.calendar.calendar.veryShortStandaloneWeekdaySymbols : self.calendar.calendar.shortStandaloneWeekdaySymbols;
     [_weekdayLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        label.text = weekdaySymbols[index];
+        if (self.calendar.appearance.weekdayUppercase){
+            label.text = [weekdaySymbols[index] uppercaseString];
+        }else{
+            label.text = weekdaySymbols[index];
+        }
     }];
     
     _dateFormatter.dateFormat = self.calendar.appearance.headerDateFormat;

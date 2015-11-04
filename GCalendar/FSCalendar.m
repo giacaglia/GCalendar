@@ -864,7 +864,11 @@
     _minimumDate = self.minimumDateForCalendar;
     _maximumDate = self.maximumDateForCalendar;
     
-    [_weekdays setValue:[UIFont systemFontOfSize:_appearance.weekdayTextSize] forKey:@"font"];
+    if(_appearance.weekdayFont!=nil){
+        [_weekdays setValue:[UIFont fontWithName:_appearance.weekdayFont size:_appearance.weekdayTextSize] forKey:@"font"];
+    }else{
+        [_weekdays setValue:[UIFont systemFontOfSize:_appearance.weekdayTextSize] forKey:@"font"];
+    }
     
     CGFloat width = self.fs_width/_weekdays.count;
     CGFloat height = kFSCalendarDefaultWeekHeight;
@@ -1332,10 +1336,14 @@
         if (!_weekdays.count) {
             NSArray *weekSymbols = _calendar.shortStandaloneWeekdaySymbols;
             _weekdays = [NSMutableArray arrayWithCapacity:weekSymbols.count];
-            UIFont *weekdayFont = [UIFont systemFontOfSize:_appearance.weekdayTextSize];
+            UIFont *weekdayFont = _appearance.weekdayFont != nil ? [UIFont fontWithName:_appearance.weekdayFont size:_appearance.weekdayTextSize]: [UIFont systemFontOfSize:_appearance.weekdayTextSize];
             for (int i = 0; i < weekSymbols.count; i++) {
                 UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-                weekdayLabel.text = weekSymbols[i];
+                if (_appearance.weekdayUppercase ){
+                    weekdayLabel.text = [weekSymbols[i] uppercaseString];
+                }else{
+                    weekdayLabel.text = weekSymbols[i];
+                }
                 weekdayLabel.textAlignment = NSTextAlignmentCenter;
                 weekdayLabel.font = weekdayFont;
                 weekdayLabel.textColor = _appearance.weekdayTextColor;
@@ -1368,7 +1376,11 @@
 {
     NSArray *weekdaySymbols = _appearance.useVeryShortWeekdaySymbols ? _calendar.veryShortStandaloneWeekdaySymbols : _calendar.shortStandaloneWeekdaySymbols;
     [_weekdays enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        label.text = weekdaySymbols[index];
+        if (_appearance.weekdayUppercase ){
+            label.text = [weekdaySymbols[index] uppercaseString];
+        }else{
+            label.text = weekdaySymbols[index];
+        }
     }];
 }
 

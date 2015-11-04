@@ -126,7 +126,7 @@
 
 - (void)configureCell
 {
-    _titleLabel.font = [UIFont systemFontOfSize:_appearance.titleTextSize];
+    _titleLabel.font = _appearance.dayFont != nil ? [UIFont fontWithName:_appearance.dayFont size:_appearance.titleTextSize] : [UIFont systemFontOfSize:_appearance.titleTextSize];
     _titleLabel.text = [NSString stringWithFormat:@"%@",@(_date.fs_day)];
     
 #define m_calculateTitleHeight \
@@ -165,21 +165,27 @@
         });
     }
     
-    _titleLabel.textColor = [self colorForCurrentStateInDictionary:_appearance.titleColors];
-    
-    _backgroundLayer.hidden = !self.selected && !self.dateIsToday && !self.dateIsSelected;
-    if (!_backgroundLayer.hidden) {
-        if (self.dateIsArrival || self.dateIsDeparture) {
-            _backgroundLayer.path = [UIBezierPath bezierPathWithOvalInRect:_backgroundLayer.bounds].CGPath;
-        }
-        else {
-            _backgroundLayer.path = [UIBezierPath bezierPathWithRect:_backgroundLayer.bounds].CGPath;
-//            _backgroundLayer.path = _appearance.cellStyle == FSCalendarCellStyleCircle ?
-//            [UIBezierPath bezierPathWithOvalInRect:_backgroundLayer.bounds].CGPath :
-//            [UIBezierPath bezierPathWithRect:_backgroundLayer.bounds].CGPath;
-        }
-        _backgroundLayer.fillColor = [self colorForCurrentStateInDictionary:_appearance.backgroundColors].CGColor;
+    if((_appearance.titleSelectionFont != nil) && self.dateIsSelected){
+        _titleLabel.font = [UIFont fontWithName:_appearance.titleSelectionFont size:_appearance.titleTextSize];
     }
+    
+    _titleLabel.textColor = [self colorForCurrentStateInDictionary:_appearance.titleColors];
+
+    _backgroundLayer.hidden=YES;
+    
+//    _backgroundLayer.hidden = !self.selected && !self.dateIsToday && !self.dateIsSelected;
+//    if (!_backgroundLayer.hidden) {
+////        if (self.dateIsArrival || self.dateIsDeparture) {
+////            _backgroundLayer.path = [UIBezierPath bezierPathWithOvalInRect:_backgroundLayer.bounds].CGPath;
+////        }
+////        else {
+//            _backgroundLayer.path = [UIBezierPath bezierPathWithRect:_backgroundLayer.bounds].CGPath;
+////            _backgroundLayer.path = _appearance.cellStyle == FSCalendarCellStyleCircle ?
+////            [UIBezierPath bezierPathWithOvalInRect:_backgroundLayer.bounds].CGPath :
+////            [UIBezierPath bezierPathWithRect:_backgroundLayer.bounds].CGPath;
+////        }
+//        _backgroundLayer.fillColor = [self colorForCurrentStateInDictionary:_appearance.backgroundColors].CGColor;
+//    }
     
     _imageView.image = _image;
     _imageView.hidden = !_image;

@@ -56,4 +56,12 @@ typedef NS_OPTIONS(NSInteger, FSCalendarCellStyle) {
 @property (assign, nonatomic) BOOL      fakeSubtitles;
 @property (assign, nonatomic) NSInteger fakedSelectedDay;
 
+// Lola additions
+@property NSString    *headerFont;
+@property BOOL      headerUppercase;
+@property NSString    *weekdayFont;
+@property BOOL      weekdayUppercase;
+@property NSString    *dayFont;
+@property NSString    *titleSelectionFont;
+
 @end
