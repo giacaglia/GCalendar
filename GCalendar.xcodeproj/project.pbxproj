@@ -9,28 +9,28 @@
 /* Begin PBXBuildFile section */
 		3FBD3F901BC59A5800738144 /* GCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F8F1BC59A5800738144 /* GCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FBD3FAF1BC59A9300738144 /* FSCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F971BC59A9300738144 /* FSCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FB01BC59A9300738144 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F981BC59A9300738144 /* FSCalendar.m */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FB11BC59A9300738144 /* FSCalendar+IBExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F991BC59A9300738144 /* FSCalendar+IBExtension.h */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FB21BC59A9300738144 /* FSCalendar+IBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9A1BC59A9300738144 /* FSCalendar+IBExtension.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FB01BC59A9300738144 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F981BC59A9300738144 /* FSCalendar.m */; };
+		3FBD3FB11BC59A9300738144 /* FSCalendar+IBExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F991BC59A9300738144 /* FSCalendar+IBExtension.h */; };
+		3FBD3FB21BC59A9300738144 /* FSCalendar+IBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9A1BC59A9300738144 /* FSCalendar+IBExtension.m */; };
 		3FBD3FB31BC59A9300738144 /* FSCalendarAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F9B1BC59A9300738144 /* FSCalendarAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FB41BC59A9300738144 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9C1BC59A9300738144 /* FSCalendarAppearance.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FB41BC59A9300738144 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9C1BC59A9300738144 /* FSCalendarAppearance.m */; };
 		3FBD3FB51BC59A9300738144 /* FSCalendarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F9D1BC59A9300738144 /* FSCalendarCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FB61BC59A9300738144 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9E1BC59A9300738144 /* FSCalendarCell.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FB61BC59A9300738144 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3F9E1BC59A9300738144 /* FSCalendarCell.m */; };
 		3FBD3FB71BC59A9300738144 /* FSCalendarConstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3F9F1BC59A9300738144 /* FSCalendarConstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FB81BC59A9300738144 /* FSCalendarConstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA01BC59A9300738144 /* FSCalendarConstance.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FB81BC59A9300738144 /* FSCalendarConstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA01BC59A9300738144 /* FSCalendarConstance.m */; };
 		3FBD3FB91BC59A9300738144 /* FSCalendarDynamicHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA11BC59A9300738144 /* FSCalendarDynamicHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FBD3FBA1BC59A9300738144 /* FSCalendarHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA21BC59A9300738144 /* FSCalendarHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FBB1BC59A9300738144 /* FSCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA31BC59A9300738144 /* FSCalendarHeader.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FBB1BC59A9300738144 /* FSCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA31BC59A9300738144 /* FSCalendarHeader.m */; };
 		3FBD3FBC1BC59A9300738144 /* FSCalendarHeaderTouchDeliver.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA41BC59A9300738144 /* FSCalendarHeaderTouchDeliver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FBD1BC59A9300738144 /* FSCalendarHeaderTouchDeliver.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA51BC59A9300738144 /* FSCalendarHeaderTouchDeliver.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FBD1BC59A9300738144 /* FSCalendarHeaderTouchDeliver.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA51BC59A9300738144 /* FSCalendarHeaderTouchDeliver.m */; };
 		3FBD3FBE1BC59A9300738144 /* FSCalendarStickyHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA61BC59A9300738144 /* FSCalendarStickyHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBD3FBF1BC59A9300738144 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA71BC59A9300738144 /* FSCalendarStickyHeader.m */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC11BC59A9300738144 /* NSDate+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA91BC59A9300738144 /* NSDate+FSExtension.h */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC21BC59A9300738144 /* NSDate+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAA1BC59A9300738144 /* NSDate+FSExtension.m */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC31BC59A9300738144 /* NSString+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FAB1BC59A9300738144 /* NSString+FSExtension.h */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC41BC59A9300738144 /* NSString+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAC1BC59A9300738144 /* NSString+FSExtension.m */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC51BC59A9300738144 /* UIView+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FAD1BC59A9300738144 /* UIView+FSExtension.h */; settings = {ASSET_TAGS = (); }; };
-		3FBD3FC61BC59A9300738144 /* UIView+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAE1BC59A9300738144 /* UIView+FSExtension.m */; settings = {ASSET_TAGS = (); }; };
+		3FBD3FBF1BC59A9300738144 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FA71BC59A9300738144 /* FSCalendarStickyHeader.m */; };
+		3FBD3FC11BC59A9300738144 /* NSDate+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FA91BC59A9300738144 /* NSDate+FSExtension.h */; };
+		3FBD3FC21BC59A9300738144 /* NSDate+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAA1BC59A9300738144 /* NSDate+FSExtension.m */; };
+		3FBD3FC31BC59A9300738144 /* NSString+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FAB1BC59A9300738144 /* NSString+FSExtension.h */; };
+		3FBD3FC41BC59A9300738144 /* NSString+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAC1BC59A9300738144 /* NSString+FSExtension.m */; };
+		3FBD3FC51BC59A9300738144 /* UIView+FSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBD3FAD1BC59A9300738144 /* UIView+FSExtension.h */; };
+		3FBD3FC61BC59A9300738144 /* UIView+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD3FAE1BC59A9300738144 /* UIView+FSExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +176,7 @@
 				TargetAttributes = {
 					3FBD3F8B1BC59A5800738144 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = UFDBYP5MQ8;
 					};
 				};
 			};
@@ -319,6 +320,8 @@
 		3FBD3F951BC59A5800738144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -329,6 +332,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = giu.GCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -336,6 +340,8 @@
 		3FBD3F961BC59A5800738144 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -346,6 +352,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = giu.GCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -369,6 +376,7 @@
 				3FBD3F961BC59A5800738144 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
