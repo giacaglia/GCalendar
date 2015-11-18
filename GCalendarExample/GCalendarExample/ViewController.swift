@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         
         let calendar = FSCalendar()
         
+        calendar.topBorder?.hidden=true
+        calendar.bottomBorder?.hidden=true
+        
         calendar.frame = CGRect(x: 2, y: (view.frame.size.height / 2.0) - 150.0, width: 371.0, height: 300)
         calendar.delegate = self
         calendar.dataSource = self

@@ -98,7 +98,8 @@ IB_DESIGNABLE
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 
-
+@property (weak  , nonatomic) UIView                     *topBorder;
+@property (weak  , nonatomic) UIView                     *bottomBorder;
 
 - (void)reloadData;
 - (CGSize)sizeThatFits:(CGSize)size;

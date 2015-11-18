@@ -46,8 +46,6 @@
 @property (weak  , nonatomic) UIView                     *contentView;
 @property (weak  , nonatomic) UIView                     *daysContainer;
 @property (weak  , nonatomic) CAShapeLayer               *maskLayer;
-@property (weak  , nonatomic) UIView                     *topBorder;
-@property (weak  , nonatomic) UIView                     *bottomBorder;
 @property (weak  , nonatomic) UICollectionView           *collectionView;
 @property (weak  , nonatomic) UICollectionViewFlowLayout *collectionViewLayout;
 
@@ -92,7 +90,7 @@
 @implementation FSCalendar
 
 @dynamic locale, selectedDate;
-@synthesize scrollDirection = _scrollDirection, firstWeekday = _firstWeekday, headerHeight =_headerHeight;
+@synthesize scrollDirection = _scrollDirection, firstWeekday = _firstWeekday, headerHeight =_headerHeight, topBorder = _topBorder, bottomBorder = _bottomBorder;
 
 #pragma mark - Life Cycle && Initialize
 
